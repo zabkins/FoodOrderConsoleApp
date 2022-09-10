@@ -6,19 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-@Table(name = "INGREDIENT")
-public class Ingredient {
+@Table(name = "DISH")
+public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Enumerated
-    @Column(name = "type")
-    private IngredientType ingredientType;
+    private int price;
+    @ManyToMany
+    private List<Ingredient> ingredients;
 }
