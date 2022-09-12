@@ -1,5 +1,6 @@
 package pl.zarczynski.foodorder.data;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.zarczynski.foodorder.domain.Dish;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional
-public class DataLoader implements CommandLineRunner {
+public class DataLoader implements InitializingBean {
     private Map<String, Ingredient> ingredientMap;
     private final IngredientRepository ingredientRepository;
     private final DishRepository dishRepository;
@@ -24,9 +25,8 @@ public class DataLoader implements CommandLineRunner {
         this.ingredientRepository = ingredientRepository;
         this.dishRepository = dishRepository;
     }
-
     @Override
-    public void run(String... args) throws Exception {
+    public void afterPropertiesSet() throws Exception {
         createIngredients();
         createAvailableDishes();
     }
