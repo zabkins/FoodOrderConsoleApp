@@ -6,6 +6,7 @@ import pl.zarczynski.foodorder.repository.DishRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -19,5 +20,10 @@ public class DefaultDishService implements DishService {
     @Override
     public List<Dish> getAllDishes() {
         return dishRepository.findAll();
+    }
+
+    @Override
+    public Set<Dish> getAllDishesWithIngredients() {
+        return dishRepository.findAllWithIngredients();
     }
 }

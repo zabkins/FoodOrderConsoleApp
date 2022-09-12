@@ -1,7 +1,6 @@
 package pl.zarczynski.foodorder.data;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.domain.Ingredient;

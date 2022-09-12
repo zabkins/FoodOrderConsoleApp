@@ -7,7 +7,9 @@ import pl.zarczynski.foodorder.service.DishService;
 import pl.zarczynski.foodorder.service.OrderService;
 import pl.zarczynski.foodorder.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class FoodOrder implements CommandLineRunner {
@@ -24,7 +26,7 @@ public class FoodOrder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         view.welcomeClient();
-        List<Dish> allDishes = dishService.getAllDishes();
-        view.printDishes(allDishes);
+        Set<Dish> allDishes = dishService.getAllDishesWithIngredients();
+        view.printDishes(new ArrayList<>(allDishes));
     }
 }

@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -21,8 +23,8 @@ public class Dish {
     private Long id;
     private String name;
     private int price;
-    @ManyToMany
-    private List<Ingredient> ingredients;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Ingredient> ingredients;
 
     private Dish(DishBuilder dishBuilder){
         this.name = dishBuilder.name;
@@ -33,7 +35,7 @@ public class Dish {
     public static class DishBuilder{
         private String name;
         private int price;
-        private List<Ingredient> ingredients;
+        private Set<Ingredient> ingredients;
 
         public DishBuilder name(String name){
             this.name = name;
@@ -47,7 +49,7 @@ public class Dish {
 
         public DishBuilder addIngredient(Ingredient ingredient){
             if(this.ingredients == null){
-                ingredients = new ArrayList<>();
+                ingredients = new HashSet<>();
             }
             ingredients.add(ingredient);
             return this;

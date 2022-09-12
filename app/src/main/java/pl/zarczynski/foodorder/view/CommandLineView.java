@@ -5,6 +5,7 @@ import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.domain.Ingredient;
 
 import java.util.List;
+import java.util.Set;
 @Component
 public class CommandLineView implements View{
     @Override
@@ -18,7 +19,7 @@ public class CommandLineView implements View{
         for(int i = 0; i < dishes.size(); i++){
             Dish dish = dishes.get(i);
             sb.append(i).append(". ").append(dish.getName()).append(" - ").append(dish.getPrice()).append("$\n");
-            List<Ingredient> dishIngredients = dish.getIngredients();
+            Set<Ingredient> dishIngredients = dish.getIngredients();
             sb.append("\t(");
             for (Ingredient dishIngredient : dishIngredients) {
                 sb.append(dishIngredient.getName()).append(",");
