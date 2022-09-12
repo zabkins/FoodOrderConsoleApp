@@ -21,4 +21,9 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private IngredientType ingredientType;
+
+    public Ingredient(String name, IngredientType type) {
+        this.name = name;
+        this.ingredientType = type;
+    }
 }
