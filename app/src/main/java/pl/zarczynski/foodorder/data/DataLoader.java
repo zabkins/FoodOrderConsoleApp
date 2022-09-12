@@ -30,18 +30,13 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void createAvailableDishes() {
-        Dish beefBurger = new Dish();
-        beefBurger.setName("Beef Burger");
-        beefBurger.setPrice(35);
-        beefBurger.setIngredients(List.of(
-                ingredientsMap.get("BUN"),
-                ingredientsMap.get("BEEF"),
-                ingredientsMap.get("TOMATO"),
-                ingredientsMap.get("LETTUCE"),
-                ingredientsMap.get("ONION"),
-                ingredientsMap.get("CHEDDAR"),
-                ingredientsMap.get("BBQ SAUCE")
-        ));
+        Dish beefBurger = new Dish.DishBuilder()
+                .name("Beef Burger")
+                .price(35)
+                .addIngredient(ingredientsMap.get("BUN")).addIngredient(ingredientsMap.get("BEEF")).addIngredient(ingredientsMap.get("TOMATO"))
+                .addIngredient(ingredientsMap.get("LETTUCE")).addIngredient(ingredientsMap.get("ONION")).addIngredient(ingredientsMap.get("CHEDDAR"))
+                .addIngredient(ingredientsMap.get("BBQ SAUCE"))
+                .build();
         dishRepository.save(beefBurger);
     }
 
