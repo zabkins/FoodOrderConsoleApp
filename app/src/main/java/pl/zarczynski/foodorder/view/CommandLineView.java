@@ -1,10 +1,11 @@
 package pl.zarczynski.foodorder.view;
 
+import org.springframework.stereotype.Component;
 import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.domain.Ingredient;
 
 import java.util.List;
-
+@Component
 public class CommandLineView implements View{
     @Override
     public void welcomeClient() {

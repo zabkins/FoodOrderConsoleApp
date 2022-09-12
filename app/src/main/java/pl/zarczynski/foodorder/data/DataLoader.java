@@ -8,11 +8,13 @@ import pl.zarczynski.foodorder.domain.IngredientType;
 import pl.zarczynski.foodorder.repository.DishRepository;
 import pl.zarczynski.foodorder.repository.IngredientRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional
 public class DataLoader implements CommandLineRunner {
     private Map<String, Ingredient> ingredientMap;
     private final IngredientRepository ingredientRepository;

@@ -4,9 +4,11 @@ import org.springframework.stereotype.Service;
 import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.repository.DishRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class DefaultDishService implements DishService {
     private final DishRepository dishRepository;
 
