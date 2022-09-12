@@ -15,7 +15,7 @@ public class DefaultDishService implements DishService {
     }
 
     @Override
-    public List<Dish> listAllDishes() {
+    public List<Dish> getAllDishes() {
         return null;
     }
 }
