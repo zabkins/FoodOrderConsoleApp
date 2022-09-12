@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    private Map<String, Ingredient> ingsMap;
+    private Map<String, Ingredient> ingredientMap;
     private final IngredientRepository ingredientRepository;
     private final DishRepository dishRepository;
 
@@ -59,7 +59,7 @@ public class DataLoader implements CommandLineRunner {
                 new Ingredient("BBQ SAUCE", IngredientType.OTHER)
         );
         ingredientRepository.saveAll(ingredients);
-        ingsMap = ingredientRepository.findAll().stream()
+        ingredientMap = ingredientRepository.findAll().stream()
                 .collect(Collectors.toMap(Ingredient::getName, ingredient -> ingredient));
     }
 
@@ -68,72 +68,72 @@ public class DataLoader implements CommandLineRunner {
                 new Dish.DishBuilder()
                         .name("Beef Burger")
                         .price(35)
-                        .addIngredient(ingsMap.get("BUN")).addIngredient(ingsMap.get("BEEF")).addIngredient(ingsMap.get("TOMATO"))
-                        .addIngredient(ingsMap.get("LETTUCE")).addIngredient(ingsMap.get("ONION")).addIngredient(ingsMap.get("CHEDDAR"))
-                        .addIngredient(ingsMap.get("BBQ SAUCE"))
+                        .addIngredient(ingredientMap.get("BUN")).addIngredient(ingredientMap.get("BEEF")).addIngredient(ingredientMap.get("TOMATO"))
+                        .addIngredient(ingredientMap.get("LETTUCE")).addIngredient(ingredientMap.get("ONION")).addIngredient(ingredientMap.get("CHEDDAR"))
+                        .addIngredient(ingredientMap.get("BBQ SAUCE"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Chicken Burger")
                         .price(32)
-                        .addIngredient(ingsMap.get("BUN")).addIngredient(ingsMap.get("CHICKEN")).addIngredient(ingsMap.get("TOMATO"))
-                        .addIngredient(ingsMap.get("LETTUCE")).addIngredient(ingsMap.get("ONION")).addIngredient(ingsMap.get("CHEDDAR"))
-                        .addIngredient(ingsMap.get("BBQ SAUCE"))
+                        .addIngredient(ingredientMap.get("BUN")).addIngredient(ingredientMap.get("CHICKEN")).addIngredient(ingredientMap.get("TOMATO"))
+                        .addIngredient(ingredientMap.get("LETTUCE")).addIngredient(ingredientMap.get("ONION")).addIngredient(ingredientMap.get("CHEDDAR"))
+                        .addIngredient(ingredientMap.get("BBQ SAUCE"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Spaghetti Bolognese")
                         .price(28)
-                        .addIngredient(ingsMap.get("PASTA")).addIngredient(ingsMap.get("BEEF")).addIngredient(ingsMap.get("TOMATO"))
+                        .addIngredient(ingredientMap.get("PASTA")).addIngredient(ingredientMap.get("BEEF")).addIngredient(ingredientMap.get("TOMATO"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Chicken Salad")
                         .price(24)
-                        .addIngredient(ingsMap.get("CHICKEN")).addIngredient(ingsMap.get("LETTUCE")).addIngredient(ingsMap.get("BREAD"))
-                        .addIngredient(ingsMap.get("TOMATO")).addIngredient(ingsMap.get("CUCUMBER")).addIngredient(ingsMap.get("BROCCOLI"))
-                        .addIngredient(ingsMap.get("MOZZARELLA")).addIngredient(ingsMap.get("GARLIC SAUCE"))
+                        .addIngredient(ingredientMap.get("CHICKEN")).addIngredient(ingredientMap.get("LETTUCE")).addIngredient(ingredientMap.get("BREAD"))
+                        .addIngredient(ingredientMap.get("TOMATO")).addIngredient(ingredientMap.get("CUCUMBER")).addIngredient(ingredientMap.get("BROCCOLI"))
+                        .addIngredient(ingredientMap.get("MOZZARELLA")).addIngredient(ingredientMap.get("GARLIC SAUCE"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Fries")
                         .price(11)
-                        .addIngredient(ingsMap.get("POTATO")).addIngredient(ingsMap.get("KETCHUP")).addIngredient(ingsMap.get("MAYONNAISE"))
+                        .addIngredient(ingredientMap.get("POTATO")).addIngredient(ingredientMap.get("KETCHUP")).addIngredient(ingredientMap.get("MAYONNAISE"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Veggie Tortilla")
                         .price(20)
-                        .addIngredient(ingsMap.get("TORTILLA")).addIngredient(ingsMap.get("TOMATO")).addIngredient(ingsMap.get("CUCUMBER"))
-                        .addIngredient(ingsMap.get("ONION")).addIngredient(ingsMap.get("LETTUCE")).addIngredient(ingsMap.get("MOZZARELLA"))
+                        .addIngredient(ingredientMap.get("TORTILLA")).addIngredient(ingredientMap.get("TOMATO")).addIngredient(ingredientMap.get("CUCUMBER"))
+                        .addIngredient(ingredientMap.get("ONION")).addIngredient(ingredientMap.get("LETTUCE")).addIngredient(ingredientMap.get("MOZZARELLA"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Chicken Curry")
                         .price(38)
-                        .addIngredient(ingsMap.get("RICE")).addIngredient(ingsMap.get("CHICKEN")).addIngredient(ingsMap.get("CURRY SAUCE"))
+                        .addIngredient(ingredientMap.get("RICE")).addIngredient(ingredientMap.get("CHICKEN")).addIngredient(ingredientMap.get("CURRY SAUCE"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Margherita")
                         .price(28)
-                        .addIngredient(ingsMap.get("DOUGH")).addIngredient(ingsMap.get("TOMATO SAUCE")).addIngredient(ingsMap.get("MOZZARELLA"))
+                        .addIngredient(ingredientMap.get("DOUGH")).addIngredient(ingredientMap.get("TOMATO SAUCE")).addIngredient(ingredientMap.get("MOZZARELLA"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Pepperoni Pizza")
                         .price(31)
-                        .addIngredient(ingsMap.get("DOUGH")).addIngredient(ingsMap.get("TOMATO SAUCE")).addIngredient(ingsMap.get("MOZZARELLA"))
-                        .addIngredient(ingsMap.get("PEPPERONI"))
+                        .addIngredient(ingredientMap.get("DOUGH")).addIngredient(ingredientMap.get("TOMATO SAUCE")).addIngredient(ingredientMap.get("MOZZARELLA"))
+                        .addIngredient(ingredientMap.get("PEPPERONI"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("BBQ Pizza")
                         .price(30)
-                        .addIngredient(ingsMap.get("DOUGH")).addIngredient(ingsMap.get("BBQ SAUCE")).addIngredient(ingsMap.get("MOZZARELLA"))
-                        .addIngredient(ingsMap.get("CHEDDAR")).addIngredient(ingsMap.get("PEPPERONI")).addIngredient(ingsMap.get("ONION"))
+                        .addIngredient(ingredientMap.get("DOUGH")).addIngredient(ingredientMap.get("BBQ SAUCE")).addIngredient(ingredientMap.get("MOZZARELLA"))
+                        .addIngredient(ingredientMap.get("CHEDDAR")).addIngredient(ingredientMap.get("PEPPERONI")).addIngredient(ingredientMap.get("ONION"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Kebab Pizza")
                         .price(30)
-                        .addIngredient(ingsMap.get("DOUGH")).addIngredient(ingsMap.get("CHICKEN")).addIngredient(ingsMap.get("MOZZARELLA"))
-                        .addIngredient(ingsMap.get("ONION"))
+                        .addIngredient(ingredientMap.get("DOUGH")).addIngredient(ingredientMap.get("CHICKEN")).addIngredient(ingredientMap.get("MOZZARELLA"))
+                        .addIngredient(ingredientMap.get("ONION"))
                         .build(),
                 new Dish.DishBuilder()
                         .name("Fruit dessert")
                         .price(18)
-                        .addIngredient(ingsMap.get("ORANGE")).addIngredient(ingsMap.get("MANGO")).addIngredient(ingsMap.get("APPLE"))
+                        .addIngredient(ingredientMap.get("ORANGE")).addIngredient(ingredientMap.get("MANGO")).addIngredient(ingredientMap.get("APPLE"))
                         .build()
         );
         dishRepository.saveAll(dishes);
