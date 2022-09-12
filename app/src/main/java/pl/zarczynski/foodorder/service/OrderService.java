@@ -5,5 +5,5 @@ import pl.zarczynski.foodorder.domain.Order;
 import java.util.List;
 
 public interface OrderService {
-    List<Order> listAllOrders();
+    List<Order> getAllOrders();
 }
