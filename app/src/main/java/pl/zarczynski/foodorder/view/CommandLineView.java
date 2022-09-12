@@ -5,6 +5,7 @@ import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.domain.Ingredient;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 @Component
 public class CommandLineView implements View{
@@ -28,5 +29,20 @@ public class CommandLineView implements View{
             sb.append(")\n");
         }
         System.out.println(sb.toString());
+    }
+
+    @Override
+    public Dish selectDish(List<Dish> dishes) {
+        Scanner consoleScanner = new Scanner(System.in);
+        while (true){
+            System.out.print("Please enter the name of the dish you would like to order: ");
+            String userInput = consoleScanner.nextLine();
+            for (Dish dish : dishes) {
+                if(userInput.equals(dish.getName())){
+                    return dish;
+                }
+            }
+            System.out.println("No such dish available. Please try again");
+        }
     }
 }

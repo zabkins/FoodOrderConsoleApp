@@ -8,4 +8,5 @@ import java.util.Set;
 public interface View {
     void welcomeClient();
     void printDishes(List<Dish> dishes);
+    Dish selectDish(List<Dish> dishes);
 }

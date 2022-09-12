@@ -28,5 +28,6 @@ public class FoodOrder implements CommandLineRunner {
         view.welcomeClient();
         Set<Dish> allDishes = dishService.getAllDishesWithIngredients();
         view.printDishes(new ArrayList<>(allDishes));
+        Dish chosenDish = view.selectDish(new ArrayList<>(allDishes));
     }
 }
