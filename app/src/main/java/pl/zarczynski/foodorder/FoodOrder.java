@@ -1,4 +1,4 @@
-package pl.zarczynski.foodorder.view;
+package pl.zarczynski.foodorder;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
