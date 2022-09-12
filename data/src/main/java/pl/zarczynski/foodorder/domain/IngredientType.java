@@ -5,5 +5,6 @@ public enum IngredientType {
     MEAT,
     VEGETABLE,
     GRAINS,
+    DAIRY,
     OTHER
 }
