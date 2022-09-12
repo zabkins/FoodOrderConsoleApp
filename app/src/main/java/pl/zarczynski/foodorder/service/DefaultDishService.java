@@ -16,6 +16,6 @@ public class DefaultDishService implements DishService {
 
     @Override
     public List<Dish> getAllDishes() {
-        return null;
+        return dishRepository.findAll();
     }
 }
