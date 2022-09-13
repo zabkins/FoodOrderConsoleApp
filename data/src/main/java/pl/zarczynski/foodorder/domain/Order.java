@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @NoArgsConstructor
@@ -25,4 +26,11 @@ public class Order {
     private LocalDateTime creationTimestamp;
     @ManyToMany
     private List<Dish> dishes;
+
+    public boolean addDish(Dish dish){
+        if(dishes == null){
+            dishes = new ArrayList<>();
+        }
+        return dishes.add(dish);
+    }
 }
