@@ -24,15 +24,15 @@ public class Order {
     @CreationTimestamp
     @Column(name = "PLACED_AT")
     private LocalDateTime creationTimestamp;
-    @ManyToMany
-    private List<Dish> dishes;
+    @OneToMany(mappedBy = "order")
+    private List<OrderPosition> orderPositions;
 
-    public boolean addDish(Dish dish){
-        if(dishes == null){
-            dishes = new ArrayList<>();
+    public boolean addPosition(OrderPosition orderPosition){
+        if(orderPositions == null){
+            orderPositions = new ArrayList<>();
         }
-        dishes.add(dish);
-        totalPrice += dish.getPrice();
+        orderPositions.add(orderPosition);
+        totalPrice += orderPosition.getDish().getPrice() * orderPosition.getAmount();
         return true;
     }
 }
