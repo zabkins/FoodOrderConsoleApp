@@ -12,4 +12,6 @@ public interface View {
 
     boolean promptForOrderChange();
     void printOrderDetails(Order currentOrder);
+
+    int askForAmount();
 }
