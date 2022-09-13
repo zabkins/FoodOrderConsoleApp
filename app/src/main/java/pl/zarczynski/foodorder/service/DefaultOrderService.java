@@ -21,12 +21,6 @@ public class DefaultOrderService implements OrderService{
         this.orderRepository = orderRepository;
         this.orderPositionRepository = orderPositionRepository;
     }
-
-    @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
     @Override
     public void updateOrdersPositions(Order order, OrderPosition orderPosition) {
         List<OrderPosition> orderPositions = order.getOrderPositions();

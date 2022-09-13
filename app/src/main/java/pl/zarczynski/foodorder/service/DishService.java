@@ -6,6 +6,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface DishService {
-    List<Dish> getAllDishes();
     Set<Dish> getAllDishesWithIngredients();
 }
