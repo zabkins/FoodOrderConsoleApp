@@ -34,12 +34,15 @@ public class FoodOrder implements CommandLineRunner {
         while (!view.promptForOrderChange()) {
             askForDishSelection(currentOrder, allDishes);
         }
+        Order savedOrder = orderService.saveOrder(currentOrder);
+        view.printOrderConfirmation(savedOrder);
     }
 
     private void askForDishSelection(Order currentOrder, Set<Dish> allDishes) {
         Dish chosenDish = view.selectDish(new ArrayList<>(allDishes));
         int amount = view.askForAmount();
         OrderPosition orderPosition = getOrderPosition(chosenDish, amount);
+        orderPosition.setOrder(currentOrder);
         orderService.updateOrdersPositions(currentOrder,orderPosition);
         view.printOrderDetails(currentOrder);
     }
