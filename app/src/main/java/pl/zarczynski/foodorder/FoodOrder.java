@@ -26,25 +26,46 @@ public class FoodOrder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Order currentOrder = new Order();
         view.welcomeClient();
+        askClientToOrder();
+    }
+
+    private void askClientToOrder() throws Exception {
+        Order currentOrder = new Order();
         Set<Dish> allDishes = dishService.getAllDishesWithIngredients();
         view.printDishes(new ArrayList<>(allDishes));
-        askForDishSelection(currentOrder, allDishes);
+        addChosenDishToOrder(currentOrder, allDishes);
         while (!view.promptForOrderChange()) {
-            askForDishSelection(currentOrder, allDishes);
+            addChosenDishToOrder(currentOrder, allDishes);
         }
+        saveOrderAndPrintConfirmation(currentOrder);
+        if(view.askToMakeAnotherOrder()){
+            askClientToOrder();
+        } else {
+            System.exit(0);
+        }
+    }
+
+    private void saveOrderAndPrintConfirmation(Order currentOrder) {
         Order savedOrder = orderService.saveOrder(currentOrder);
         view.printOrderConfirmation(savedOrder);
     }
 
-    private void askForDishSelection(Order currentOrder, Set<Dish> allDishes) {
+    private void addChosenDishToOrder(Order currentOrder, Set<Dish> allDishes) {
+        OrderPosition orderPosition = askForDishSelectionAndCreateOrderPosition(allDishes);
+        assignOrderAndOrderPosition(currentOrder, orderPosition);
+        view.printOrderDetails(currentOrder);
+    }
+
+    private void assignOrderAndOrderPosition(Order currentOrder, OrderPosition orderPosition) {
+        orderPosition.setOrder(currentOrder);
+        orderService.updateOrdersPositions(currentOrder, orderPosition);
+    }
+
+    private OrderPosition askForDishSelectionAndCreateOrderPosition(Set<Dish> allDishes) {
         Dish chosenDish = view.selectDish(new ArrayList<>(allDishes));
         int amount = view.askForAmount();
-        OrderPosition orderPosition = getOrderPosition(chosenDish, amount);
-        orderPosition.setOrder(currentOrder);
-        orderService.updateOrdersPositions(currentOrder,orderPosition);
-        view.printOrderDetails(currentOrder);
+        return getOrderPosition(chosenDish, amount);
     }
 
     private static OrderPosition getOrderPosition(Dish chosenDish, int amount) {
