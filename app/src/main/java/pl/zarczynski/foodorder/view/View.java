@@ -14,4 +14,6 @@ public interface View {
     void printOrderDetails(Order currentOrder);
 
     int askForAmount();
+
+    void printOrderConfirmation(Order order);
 }

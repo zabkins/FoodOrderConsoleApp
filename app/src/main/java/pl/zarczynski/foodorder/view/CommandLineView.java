@@ -6,6 +6,7 @@ import pl.zarczynski.foodorder.domain.Ingredient;
 import pl.zarczynski.foodorder.domain.Order;
 import pl.zarczynski.foodorder.domain.OrderPosition;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -66,6 +67,22 @@ public class CommandLineView implements View{
                 System.out.print("Invalid input. Please enter 0 or more: ");
             }
         }
+    }
+
+    @Override
+    public void printOrderConfirmation(Order order) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Your order has been made. Thank you for choosing us! Order details:\n");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss");
+        String formattedDateTime = order.getCreationTimestamp().format(formatter);
+        sb.append("ID: ").append(order.getId()).append(" | Date: ").append(formattedDateTime).append("\n");
+        List<OrderPosition> orderPositions = order.getOrderPositions();
+        for (OrderPosition orderPosition : orderPositions) {
+            Dish dish = orderPosition.getDish();
+            sb.append("\t").append(dish.getName()).append(" - ").append(orderPosition.getAmount()).append(" piece(s)").append("\n");
+        }
+        sb.append("TOTAL PRICE: ").append(order.getTotalPrice()).append(" PLN.\n");
+        System.out.println(sb);
     }
 
     @Override
