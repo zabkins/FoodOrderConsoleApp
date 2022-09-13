@@ -9,4 +9,6 @@ public interface OrderService {
     List<Order> getAllOrders();
 
     void updateOrdersPositions(Order order, OrderPosition orderPosition);
+
+    Order saveOrder(Order currentOrder);
 }

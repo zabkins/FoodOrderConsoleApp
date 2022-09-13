@@ -3,6 +3,7 @@ package pl.zarczynski.foodorder.service;
 import org.springframework.stereotype.Service;
 import pl.zarczynski.foodorder.domain.Order;
 import pl.zarczynski.foodorder.domain.OrderPosition;
+import pl.zarczynski.foodorder.repository.OrderPositionRepository;
 import pl.zarczynski.foodorder.repository.OrderRepository;
 
 import javax.transaction.Transactional;
@@ -14,9 +15,11 @@ import java.util.List;
 public class DefaultOrderService implements OrderService{
 
     private final OrderRepository orderRepository;
+    private final OrderPositionRepository orderPositionRepository;
 
-    public DefaultOrderService(OrderRepository orderRepository) {
+    public DefaultOrderService(OrderRepository orderRepository, OrderPositionRepository orderPositionRepository) {
         this.orderRepository = orderRepository;
+        this.orderPositionRepository = orderPositionRepository;
     }
 
     @Override
@@ -39,14 +42,23 @@ public class DefaultOrderService implements OrderService{
                     }
                 }
             }
-            if(!isAlreadyAdded){
+            if(!isAlreadyAdded && orderPosition.getAmount() != 0){
                 order.addPosition(orderPosition);
             }
         } else {
             orderPositions = new ArrayList<>();
-            orderPositions.add(orderPosition);
+            if(orderPosition.getAmount() != 0){
+                orderPositions.add(orderPosition);
+            }
             order.setOrderPositions(orderPositions);
         }
         order.updatePrice();
+    }
+
+    @Override
+    public Order saveOrder(Order currentOrder) {
+        List<OrderPosition> orderPositions = currentOrder.getOrderPositions();
+        orderPositionRepository.saveAll(orderPositions);
+        return orderRepository.save(currentOrder);
     }
 }
