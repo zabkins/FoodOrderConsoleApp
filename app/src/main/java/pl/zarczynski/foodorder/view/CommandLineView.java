@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Set;
 @Component
 public class CommandLineView implements View{
+    private final Scanner consoleScanner = new Scanner(System.in);
     @Override
     public void welcomeClient() {
         System.out.println("Welcome to our restaurant! Take a look at our menu and feel free to order anything!");
@@ -19,7 +20,7 @@ public class CommandLineView implements View{
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < dishes.size(); i++){
             Dish dish = dishes.get(i);
-            sb.append(i).append(". ").append(dish.getName()).append(" - ").append(dish.getPrice()).append("$\n");
+            sb.append(i).append(". ").append(dish.getName()).append(" - ").append(dish.getPrice()).append("PLN\n");
             Set<Ingredient> dishIngredients = dish.getIngredients();
             sb.append("\t(");
             for (Ingredient dishIngredient : dishIngredients) {
@@ -33,7 +34,6 @@ public class CommandLineView implements View{
 
     @Override
     public Dish selectDish(List<Dish> dishes) {
-        Scanner consoleScanner = new Scanner(System.in);
         while (true){
             System.out.print("Please enter the name of the dish you would like to order: ");
             String userInput = consoleScanner.nextLine();
@@ -44,5 +44,24 @@ public class CommandLineView implements View{
             }
             System.out.println("No such dish available. Please try again");
         }
+    }
+
+    @Override
+    public boolean promptForOrder() {
+        System.out.println("Would you like to add something more to your order? (y/n)");
+        while (true){
+            String userInput = consoleScanner.nextLine();
+            if("y".equals(userInput)){
+                return true;
+            } else if ("n".equals(userInput)){
+                return false;
+            }
+            System.out.println("Invalid input. Please enter y or n");
+        }
+    }
+
+    @Override
+    public void printDishConfirmation(Dish dish) {
+        System.out.printf("%s has been added to your order.\n",dish.getName());
     }
 }

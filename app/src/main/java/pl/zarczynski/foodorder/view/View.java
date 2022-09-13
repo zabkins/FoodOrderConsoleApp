@@ -9,4 +9,8 @@ public interface View {
     void welcomeClient();
     void printDishes(List<Dish> dishes);
     Dish selectDish(List<Dish> dishes);
+
+    boolean promptForOrder();
+
+    void printDishConfirmation(Dish dish);
 }
