@@ -35,4 +35,15 @@ public class Order {
         totalPrice += orderPosition.getDish().getPrice() * orderPosition.getAmount();
         return true;
     }
+
+    public boolean removePosition(OrderPosition orderPosition) {
+        return orderPositions.remove(orderPosition);
+    }
+
+    public void updatePrice(){
+        this.totalPrice = 0;
+        for (OrderPosition orderPosition : this.orderPositions) {
+            totalPrice += orderPosition.getDish().getPrice() * orderPosition.getAmount();
+        }
+    }
 }
