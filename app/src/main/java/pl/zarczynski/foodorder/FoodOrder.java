@@ -3,12 +3,12 @@ package pl.zarczynski.foodorder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.zarczynski.foodorder.domain.Dish;
+import pl.zarczynski.foodorder.domain.Order;
 import pl.zarczynski.foodorder.service.DishService;
 import pl.zarczynski.foodorder.service.OrderService;
 import pl.zarczynski.foodorder.view.View;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -29,5 +29,12 @@ public class FoodOrder implements CommandLineRunner {
         Set<Dish> allDishes = dishService.getAllDishesWithIngredients();
         view.printDishes(new ArrayList<>(allDishes));
         Dish chosenDish = view.selectDish(new ArrayList<>(allDishes));
+        Order currentOrder = new Order();
+        currentOrder.addDish(chosenDish);
+        view.printOrderDetails(currentOrder);
+        while(view.promptForOrderChange()){
+            Dish nextDish = view.selectDish(new ArrayList<>(allDishes));
+            currentOrder.addDish(chosenDish);
+        }
     }
 }

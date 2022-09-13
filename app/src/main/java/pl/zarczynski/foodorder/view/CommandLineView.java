@@ -3,6 +3,7 @@ package pl.zarczynski.foodorder.view;
 import org.springframework.stereotype.Component;
 import pl.zarczynski.foodorder.domain.Dish;
 import pl.zarczynski.foodorder.domain.Ingredient;
+import pl.zarczynski.foodorder.domain.Order;
 
 import java.util.List;
 import java.util.Scanner;
@@ -47,8 +48,8 @@ public class CommandLineView implements View{
     }
 
     @Override
-    public boolean promptForOrder() {
-        System.out.println("Would you like to add something more to your order? (y/n)");
+    public boolean promptForOrderChange() {
+        System.out.println("Would you like to add something more to your order? (y/n).");
         while (true){
             String userInput = consoleScanner.nextLine();
             if("y".equals(userInput)){
@@ -61,7 +62,14 @@ public class CommandLineView implements View{
     }
 
     @Override
-    public void printDishConfirmation(Dish dish) {
-        System.out.printf("%s has been added to your order.\n",dish.getName());
+    public void printOrderDetails(Order currentOrder) {
+        List<Dish> currentOrderDishes = currentOrder.getDishes();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dish has been added to your order. Currently your order is :\n");
+        for (Dish currentOrderDish : currentOrderDishes) {
+            sb.append("\t").append(currentOrderDish.getName()).append("\n");
+        }
+        sb.append("Total price: ").append(currentOrder.getTotalPrice()).append(" PLN\n");
+        System.out.println(sb);
     }
 }

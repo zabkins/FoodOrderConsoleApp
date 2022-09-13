@@ -31,6 +31,8 @@ public class Order {
         if(dishes == null){
             dishes = new ArrayList<>();
         }
-        return dishes.add(dish);
+        dishes.add(dish);
+        totalPrice += dish.getPrice();
+        return true;
     }
 }
