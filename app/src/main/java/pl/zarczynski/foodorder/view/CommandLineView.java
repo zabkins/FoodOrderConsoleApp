@@ -37,7 +37,7 @@ public class CommandLineView implements View{
     @Override
     public Dish selectDish(List<Dish> dishes) {
         while (true){
-            System.out.print("Please enter the name of the dish you would like to order: ");
+            System.out.print("Please enter the name of the dish you would like to add to or delete from the order: ");
             String userInput = consoleScanner.nextLine();
             for (Dish dish : dishes) {
                 if(userInput.equals(dish.getName())){
@@ -70,7 +70,7 @@ public class CommandLineView implements View{
 
     @Override
     public boolean promptForOrderChange() {
-        System.out.println("Would you like to add something more to your order? (y/n).");
+        System.out.print("Are you finished with your order? (y/n) : ");
         while (true){
             String userInput = consoleScanner.nextLine();
             if("y".equals(userInput)){
