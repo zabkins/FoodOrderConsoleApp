@@ -86,8 +86,18 @@ public class CommandLineView implements View{
     }
 
     @Override
+    public boolean askToMakeAnotherOrder() {
+        System.out.println("Would you like to place another order? (y/n)");
+        return askForYesOrNo();
+    }
+
+    @Override
     public boolean promptForOrderChange() {
         System.out.print("Are you finished with your order? (y/n) : ");
+        return askForYesOrNo();
+    }
+
+    private boolean askForYesOrNo() {
         while (true){
             String userInput = consoleScanner.nextLine();
             if("y".equals(userInput)){
