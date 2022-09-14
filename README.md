@@ -8,9 +8,9 @@ Technologies used :<br>
  Gradle, JUnit 5, Mockito, SpringBoot, Spring Data, Hibernate, H2 database<br><br>
  
  HOW TO RUN APPLICATION:<br>
-  1.Through IDE
-  2.Open project in IDE
-  3.Run main method in app sub-module's Application class
+  - Through IDE<br>
+  - Open project in IDE<br>
+  - Run main method in app sub-module's Application class<br>
   II. Through executable jar file<br>
     1.Go to main repository's folder<br>
     2.In IDE or in terminal, execute command 'gradle clean build' -> folder build/libs will be created in main repository's folder<br>
