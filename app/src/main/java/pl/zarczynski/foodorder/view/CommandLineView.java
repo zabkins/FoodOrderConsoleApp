@@ -12,7 +12,6 @@ import java.util.Scanner;
 import java.util.Set;
 @Component
 public class CommandLineView implements View{
-    private final Scanner consoleScanner = new Scanner(System.in);
     private final InputReader inputReader;
     private final OutputWriter outputWriter;
 
@@ -47,7 +46,7 @@ public class CommandLineView implements View{
     public Dish selectDish(List<Dish> dishes) {
         while (true){
             outputWriter.print("Please enter the name of the dish you would like to add to or delete from the order: ");
-            String userInput = consoleScanner.nextLine();
+            String userInput = inputReader.nextLine();
             for (Dish dish : dishes) {
                 if(userInput.equals(dish.getName())){
                     return dish;
@@ -62,7 +61,7 @@ public class CommandLineView implements View{
         outputWriter.print("Please enter the amount you would like to order. This overwrites old value, entering zero removes the item from your order:");
         int pieces = -1;
         while (true){
-            String userInput = consoleScanner.nextLine();
+            String userInput = inputReader.nextLine();
             try{
                 pieces = Integer.parseInt(userInput);
             } catch (NumberFormatException e){
@@ -107,7 +106,7 @@ public class CommandLineView implements View{
 
     private boolean askForYesOrNo() {
         while (true){
-            String userInput = consoleScanner.nextLine();
+            String userInput = inputReader.nextLine();
             if("y".equals(userInput)){
                 return true;
             } else if ("n".equals(userInput)){

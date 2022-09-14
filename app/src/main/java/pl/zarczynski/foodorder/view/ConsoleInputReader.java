@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ConsoleInputReader implements InputReader{
     private final Scanner consoleScanner = new Scanner(System.in);
     @Override
-    public String readInput() {
+    public String nextLine() {
         return consoleScanner.nextLine();
     }
 }
