@@ -13,9 +13,17 @@ import java.util.Set;
 @Component
 public class CommandLineView implements View{
     private final Scanner consoleScanner = new Scanner(System.in);
+    private final InputReader inputReader;
+    private final OutputWriter outputWriter;
+
+    public CommandLineView(InputReader inputReader, OutputWriter outputWriter) {
+        this.inputReader = inputReader;
+        this.outputWriter = outputWriter;
+    }
+
     @Override
     public void welcomeClient() {
-        System.out.println("Welcome to our restaurant! Take a look at our menu and feel free to order anything!");
+        outputWriter.println("Welcome to our restaurant! Take a look at our menu and feel free to order anything!");
     }
 
     @Override
@@ -32,39 +40,39 @@ public class CommandLineView implements View{
             sb.deleteCharAt(sb.length() - 1);
             sb.append(")\n");
         }
-        System.out.println(sb.toString());
+        outputWriter.println(sb.toString());
     }
 
     @Override
     public Dish selectDish(List<Dish> dishes) {
         while (true){
-            System.out.print("Please enter the name of the dish you would like to add to or delete from the order: ");
+            outputWriter.print("Please enter the name of the dish you would like to add to or delete from the order: ");
             String userInput = consoleScanner.nextLine();
             for (Dish dish : dishes) {
                 if(userInput.equals(dish.getName())){
                     return dish;
                 }
             }
-            System.out.println("No such dish available. Please try again");
+            outputWriter.println("No such dish available. Please try again");
         }
     }
 
     @Override
     public int askForAmount() {
-        System.out.print("Please enter the amount you would like to order. This overwrites old value, entering zero removes the item from your order:");
+        outputWriter.print("Please enter the amount you would like to order. This overwrites old value, entering zero removes the item from your order:");
         int pieces = -1;
         while (true){
             String userInput = consoleScanner.nextLine();
             try{
                 pieces = Integer.parseInt(userInput);
             } catch (NumberFormatException e){
-                System.out.print("Invalid input. Please enter 0 or more: ");
+                outputWriter.print("Invalid input. Please enter 0 or more: ");
                 continue;
             }
             if(pieces >= 0){
                 return pieces;
             } else {
-                System.out.print("Invalid input. Please enter 0 or more: ");
+                outputWriter.print("Invalid input. Please enter 0 or more: ");
             }
         }
     }
@@ -82,18 +90,18 @@ public class CommandLineView implements View{
             sb.append("\t").append(dish.getName()).append(" - ").append(orderPosition.getAmount()).append(" piece(s)").append("\n");
         }
         sb.append("TOTAL PRICE: ").append(order.getTotalPrice()).append(" PLN.\n");
-        System.out.println(sb);
+        outputWriter.println(sb.toString());
     }
 
     @Override
     public boolean askToMakeAnotherOrder() {
-        System.out.print("Would you like to place another order? (y/n) : ");
+        outputWriter.print("Would you like to place another order? (y/n) : ");
         return askForYesOrNo();
     }
 
     @Override
     public boolean promptForOrderChange() {
-        System.out.print("Are you finished with your order? (y/n) : ");
+        outputWriter.print("Are you finished with your order? (y/n) : ");
         return askForYesOrNo();
     }
 
@@ -105,7 +113,7 @@ public class CommandLineView implements View{
             } else if ("n".equals(userInput)){
                 return false;
             }
-            System.out.println("Invalid input. Please enter y or n");
+            outputWriter.println("Invalid input. Please enter y or n");
         }
     }
 
@@ -119,6 +127,6 @@ public class CommandLineView implements View{
             sb.append("\t").append(currentDish.getName()).append(" - ").append(orderPosition.getAmount()).append(" piece(s)").append("\n");
         }
         sb.append("Total price: ").append(currentOrder.getTotalPrice()).append(" PLN\n");
-        System.out.println(sb);
+        outputWriter.println(sb.toString());
     }
 }
