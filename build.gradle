@@ -18,7 +18,26 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation project(':app')
+    implementation project(':data')
+    jar {
+        manifest {
+            attributes 'Main-Class' : 'pl.zarczynski.foodorder.Application'
+        }
+        from {
+            configurations . compileClasspath .
+                    findAll { it. name .endsWith( 'jar' ) } .collect
+                    { zipTree(it) }
+        }
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
+
+springBoot {
+    mainClass = 'pl.zarczynski.foodorder.Application'
+}
+
+
 
 test {
     useJUnitPlatform()
