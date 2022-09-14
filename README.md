@@ -8,10 +8,10 @@ Technologies used :<br>
  Gradle, JUnit 5, Mockito, SpringBoot, Spring Data, Hibernate, H2 database<br><br>
  
  HOW TO RUN APPLICATION:<br>
-  - Through IDE<br>
-  - Open project in IDE<br>
-  - Run main method in app sub-module's Application class<br>
-  II. Through executable jar file<br>
-    1.Go to main repository's folder<br>
-    2.In IDE or in terminal, execute command 'gradle clean build' -> folder build/libs will be created in main repository's folder<br>
-    3.Open terminal and execute command 'java -jar FoodOrderApp-1.0-SNAPSHOT.jar'. Application will run in the terminal<br>
+  1. Through IDE<br>
+   - Open project in IDE<br>
+   - Run main method in app sub-module's Application class<br>
+  2. Through executable jar file<br>
+   - Go to main repository's folder<br>
+   - In IDE or in terminal, execute command 'gradle clean build' -> folder build/libs will be created in main repository's folder<br>
+   - Open terminal and execute command 'java -jar FoodOrderApp-1.0-SNAPSHOT.jar'. Application will run in the terminal<br>
