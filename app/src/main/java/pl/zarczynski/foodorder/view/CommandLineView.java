@@ -8,7 +8,6 @@ import pl.zarczynski.foodorder.domain.OrderPosition;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 @Component
 public class CommandLineView implements View{
