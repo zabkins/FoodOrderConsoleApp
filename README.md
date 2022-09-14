@@ -1,10 +1,11 @@
 # FoodOrderApp
-Simple multi-module console app imitating restaurant's ordering process. It lets creating new orders until needed and stores them in H2 in-memory database. Easily expandable and if needed, changing food available for order.
-It sets initial, neccessary DB data using app sub-module's DataLoader class. All console logging is disabled for visibility. 
+Simple multi-module console app imitating restaurant's ordering process. It lets creating new orders until needed and stores them in H2 in-memory database. 
+It sets initial, neccessary DB data using app sub-module's DataLoader class. If needed, food available for user to choose can be easily edited or expanded in the DataLoader class.
+All console logging is disabled for visibility. 
 Database can be accessed at localhost:8080/h2-console . (JDBC URL: jdbc:h2:mem:test, Username: admin, password - none) 
 
 Technologies used :
- Gradle, JUnit 5, Mockito, SpringBoot, Hibernate, H2 database
+ Gradle, JUnit 5, Mockito, SpringBoot, Spring Data, Hibernate, H2 database
  
  HOW TO RUN APPLICATION:
   I. Through IDE
