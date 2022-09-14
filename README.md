@@ -1,6 +1,6 @@
 # FoodOrderApp
 Simple multi-module console app imitating restaurant's ordering process. It lets creating new orders until needed and stores them in H2 in-memory database.<br> 
-It sets initial, neccessary DB data using app sub-module's DataLoader class. If needed, food available for user to choose can be easily edited or expanded<br> in the DataLoader class.
+It sets initial, neccessary DB data using app sub-module's DataLoader class. If needed, food available for user to choose can be easily edited or expanded in the DataLoader class.<br>
 All console logging is disabled for visibility.<br> 
 Database can be accessed at localhost:8080/h2-console . (JDBC URL: jdbc:h2:mem:test, Username: admin, password - none)<br> <br>
 
